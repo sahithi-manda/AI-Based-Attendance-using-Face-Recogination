@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+attendance.db
+*.csv
+error.log
+auth.json
+dataset/
+encodings.pickle

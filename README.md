@@ -107,10 +107,23 @@ Without them, the app runs normally and skips sending email.
 
 Face encodings, student records and attendance logs are stored locally (`encodings.pickle`, `students.csv`, `attendance_log.csv`) and are excluded from Git by `.gitignore`. Nothing is uploaded.
 
+## Sanity check
+
+The recognition engine (`FaceEngine.recognize_faces`) was run on still photos from a public 9-person face dataset. Three people were enrolled from a single photo each, then probed with 10 other photos per person:
+
+| Probe | Result |
+|---|---|
+| Enrolled person 1 | 9 of 9 detected faces recognized (1 photo: no face detected) |
+| Enrolled person 2 | 10 of 10 recognized |
+| Enrolled person 3 | 6 of 10 recognized, 4 returned *Unknown* |
+| A person who was **not** enrolled | 0 of 10 false matches, all *Unknown* |
+
+This is a small test, not a benchmark, and it used photos rather than a live webcam. With a single enrollment photo, the strict 0.55 tolerance prefers *Unknown* over a wrong name, which is the safer failure for attendance.
+
 ## Limitations
 
 - **No liveness detection yet.** `core/anti_spoofing.py` is a placeholder that accepts every face, so a printed photo could be marked present.
-- Recognition accuracy has not been formally measured. It depends on lighting, camera quality and how many students are enrolled.
+- Accuracy has only been sanity-checked (above), not measured on a live classroom. It depends on lighting, camera quality and how many students are enrolled.
 - CSV storage is fine for a single classroom but not for concurrent use.
 
 ## Future improvements

@@ -299,7 +299,7 @@ class DashboardFrame(ctk.CTkScrollableFrame):
         messagebox.showinfo("Export Success", f"Today's report saved to {filename}")
 
     def notify_absentees(self):
-        answer = messagebox.askyesno("Confirm", "Are you sure you want to send ABSENT emails to all students not marked present today?\n\n(Make sure your email credentials are set in email_handler.py)")
+        answer = messagebox.askyesno("Confirm", "Are you sure you want to send ABSENT emails to all students not marked present today?\n\n(Requires the SMTP_SENDER_EMAIL and SMTP_APP_PASSWORD environment variables.)")
         if not answer:
             return
             

@@ -3,13 +3,20 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import threading
 
-# ==========================================
-# IMPORTANT: CONFIGURE YOUR CREDENTIALS HERE
-# ==========================================
-SENDER_EMAIL = "REMOVED_SENDER_EMAIL" 
-SENDER_PASSWORD = "REMOVED_SMTP_APP_PASSWORD"
+import os
+
+# SMTP credentials are read from environment variables so they are never committed.
+#   SMTP_SENDER_EMAIL  - the Gmail address that sends notifications
+#   SMTP_APP_PASSWORD  - a Gmail app password (not your account password)
+SENDER_EMAIL = os.environ.get("SMTP_SENDER_EMAIL", "")
+SENDER_PASSWORD = os.environ.get("SMTP_APP_PASSWORD", "")
+
 
 def send_email_async(receiver_email, subject, body):
+    if not SENDER_EMAIL or not SENDER_PASSWORD:
+        print("Email not sent: set SMTP_SENDER_EMAIL and SMTP_APP_PASSWORD to enable notifications.")
+        return
+
     def _send():
         try:
             msg = MIMEMultipart()

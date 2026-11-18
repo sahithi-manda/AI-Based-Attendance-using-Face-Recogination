@@ -71,8 +71,8 @@ The match tolerance is 0.55, slightly stricter than the library default of 0.6 (
 `face_recognition` depends on **dlib**, which builds from source and needs CMake and a C++ compiler.
 
 ```bash
-git clone https://github.com/sahithi-manda/Face-Recognition-Attendance-System.git
-cd Face-Recognition-Attendance-System
+git clone https://github.com/sahithi-manda/AI-Based-Attendance-using-Face-Recogination.git
+cd AI-Based-Attendance-using-Face-Recogination
 python -m venv venv
 source venv/bin/activate          # Windows: venv\Scripts\activate
 pip install cmake

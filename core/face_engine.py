@@ -68,7 +68,7 @@ class FaceEngine:
                 
                 if len(face_distances) > 0:
                     best_match_index = np.argmin(face_distances)
-                    # Use a slightly more permissive tolerance for face matching (0.55) to accommodate lighting changes
+                    # Match tolerance 0.55 is slightly stricter than the library default (0.6) to reduce false matches
                     if face_distances[best_match_index] <= 0.55:
                         student = self.known_students[best_match_index]
                         name = student['name']
